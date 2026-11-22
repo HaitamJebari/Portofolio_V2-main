@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MorphSVGPlugin.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <nav>
+        <div class="box">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav> -->
+
+    <div class="topbar">
+        <span class="logo"></span>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Open menu">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <line class="bar bar-top" x1="3" y1="7" x2="17" y2="7" stroke="var(--white)" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="bar bar-mid" x1="3" y1="10" x2="17" y2="10" stroke="var(--white)" stroke-width="1.5"
+                    stroke-linecap="round" />
+                <line class="bar bar-bot" x1="3" y1="13" x2="17" y2="13" stroke="var(--white)" stroke-width="1.5"
+                    stroke-linecap="round" />
+            </svg>
+        </button>
+    </div>
+
+
+    <div class="nav" id="nav">
+        <div class="nav-bg"></div>
+        <div class="nav-top nav-border nav-panel" id="navTop">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-middle nav-border nav-panel" id="navMiddle">
+            <div class="nav-middle-header">What's New</div>
+            <div class="nav-middle-card">
+                <div class="nav-middle-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                    </svg>
+                </div>
+                <div class="nav-middle-info">
+                    <div class="nav-middle-title">GSAP 3.15 is here</div>
+                    <div class="nav-middle-desc">New easeReverse &amp; more.</div>
+                </div>
+            </div>
+            <div class="nav-middle-actions">
+                <a href="#">Release Notes</a>
+            </div>
+        </div>
+
+        <div class="nav-bottom nav-border nav-panel" id="navBottom">
+            <ul class="nav-socials">
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+            </ul>
+            <div class="nav-asset">
+                <img src="https://gsap.com/img/header-shapes.png" alt="" />
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+<script src="script.js"></script>
+
+</html>
