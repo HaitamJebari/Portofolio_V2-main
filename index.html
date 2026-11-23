@@ -15,76 +15,115 @@
 </head>
 
 <body>
-    <!-- <nav>
-        <div class="box">
-            <ul class="nav-list">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-            </ul>
-        </div>
-    </nav> -->
+    <header>
+        <!-- ------- NAVBAR -------- -->
+        <div class="navbar">
 
-    <div class="topbar">
-        <span class="logo"></span>
-        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Open menu">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <line class="bar bar-top" x1="3" y1="7" x2="17" y2="7" stroke="var(--white)" stroke-width="1.5"
-                    stroke-linecap="round" />
-                <line class="bar bar-mid" x1="3" y1="10" x2="17" y2="10" stroke="var(--white)" stroke-width="1.5"
-                    stroke-linecap="round" />
-                <line class="bar bar-bot" x1="3" y1="13" x2="17" y2="13" stroke="var(--white)" stroke-width="1.5"
-                    stroke-linecap="round" />
-            </svg>
-        </button>
-    </div>
-
-
-    <div class="nav" id="nav">
-        <div class="nav-bg"></div>
-        <div class="nav-top nav-border nav-panel" id="navTop">
-            <ul class="nav-list">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-            </ul>
         </div>
 
-        <div class="nav-middle nav-border nav-panel" id="navMiddle">
-            <div class="nav-middle-header">What's New</div>
-            <div class="nav-middle-card">
-                <div class="nav-middle-badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        <!-- ------- MOBILE NAVBAR -------- -->
+         <div class="navbarMobile">
+            <div class="topbar">
+                <span class="logo"><img src="https://assets.codepen.io/16327/gsap-logo-light.svg" alt="" /></span>
+                <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Open menu">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <line class="bar bar-top" x1="3" y1="7" x2="17" y2="7" stroke="var(--white)" stroke-width="1.5"
+                            stroke-linecap="round" />
+                        <line class="bar bar-mid" x1="3" y1="10" x2="17" y2="10" stroke="var(--white)"
+                            stroke-width="1.5" stroke-linecap="round" />
+                        <line class="bar bar-bot" x1="3" y1="13" x2="17" y2="13" stroke="var(--white)"
+                            stroke-width="1.5" stroke-linecap="round" />
                     </svg>
-                </div>
-                <div class="nav-middle-info">
-                    <div class="nav-middle-title">GSAP 3.15 is here</div>
-                    <div class="nav-middle-desc">New easeReverse &amp; more.</div>
-                </div>
+                </button>
             </div>
-            <div class="nav-middle-actions">
-                <a href="#">Release Notes</a>
+
+
+            <div class="nav" id="nav">
+                <div class="nav-bg"></div>
+
+                <div class="nav-top nav-border nav-panel" id="navTop">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a class="nav-link" href="#">Tools</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Showcase</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Learn GSAP</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Docs</a></li>
+                    </ul>
+                    <div class="nav-login">Login / Create Account</div>
+                </div>
+
+                <div class="nav-middle nav-border nav-panel" id="navMiddle">
+                    <div class="nav-middle-header">What's New</div>
+                    <div class="nav-middle-card">
+                        <div class="nav-middle-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                            </svg>
+                        </div>
+                        <div class="nav-middle-info">
+                            <div class="nav-middle-title">GSAP 3.15 is here</div>
+                            <div class="nav-middle-desc">New easeReverse &amp; more.</div>
+                        </div>
+                    </div>
+                    <div class="nav-middle-actions">
+                        <a href="#">Release Notes</a>
+                    </div>
+                </div>
+
+                <div class="nav-bottom nav-border nav-panel" id="navBottom">
+                    <ul class="nav-socials">
+                        <li><a href="#">CodePen</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">X</a></li>
+                    </ul>
+                    <div class="nav-asset">
+                        <img src="https://gsap.com/img/header-shapes.png" alt="" />
+                    </div>
+                </div>
             </div>
         </div>
+    </header>
 
-        <div class="nav-bottom nav-border nav-panel" id="navBottom">
-            <ul class="nav-socials">
-                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
-            </ul>
-            <div class="nav-asset">
-                <img src="https://gsap.com/img/header-shapes.png" alt="" />
-            </div>
+    <main></main>
+    <footer>
+
+        <div class="fab-wrap" id="fabWrap">
+
+            <button class="fab-item" aria-label="Search">
+                <i class="fa-brands fa-instagram"></i>
+            </button>
+
+            <button class="fab-item" aria-label="Edit">
+                <i class="fa-brands fa-github"></i>
+            </button>
+
+            <button class="fab-item" aria-label="Upload">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </button>
+
+            <button class="fab-item" aria-label="Share">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <circle cx="18" cy="5" r="3" />
+                    <circle cx="6" cy="12" r="3" />
+                    <circle cx="18" cy="19" r="3" />
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                </svg>
+            </button>
+
+            <button class="fab" id="fabBtn" aria-label="Toggle actions menu" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+            </button>
+
         </div>
-    </div>
 
-
-
+    </footer>
 </body>
 <script src="script.js"></script>
 

@@ -1,3 +1,7 @@
+/* ========================================
+   FONTS
+======================================== */
+
 @font-face {
   font-display: block;
   font-family: Mori;
@@ -18,14 +22,14 @@
     format("woff");
 }
 
-*,
-*::before,
-*::after {
+/* ========================================
+   BODY
+======================================== */
+
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: none !important;
-  animation: none !important;
 }
 
 :root {
@@ -36,31 +40,77 @@
   --s75: #bbbaa6;
   --s50: #7c7c6f;
   --s25: #42433d;
-  --color-shockingly-green: #0ae448;
-  --color-just-black: #0e100f;
-  --color-surface-white: #fffce1;
-  --color-lt-green: #abff84;
-  --color-grey: #191919;
-  --color-grey-dark: #191919;
-  --color-surface75: #bbbaa6;
-  --color-surface50: #7c7c6f;
-  --color-surface25: #42433d;
-  --gradient-macha: linear-gradient(114.41deg, var(--color-shockingly-green) 20.74%, var(--color-lt-green) 65.5%);
-  --dark: var(--color-just-black);
-  --light: var(--color-surface-white);
-  --green: var(--color-shockingly-green);
+
+  --gradient: linear-gradient(
+    114.41deg,
+    #ffffffbf 20.74%,
+    #fffce100 65.5%
+  );
 }
 
-html,
+html {
+  min-height: 100%;
+}
+
 body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: Mori, sans-serif;
+  min-height: 100vh;
+  margin: 0;
   background: var(--black);
+  font-family: Mori, sans-serif;
   color: var(--white);
+  overflow-x: hidden;
 }
 
+
+/* ========================================
+   NAVBAR
+======================================== */
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 50%;
+  height: 60px;
+
+  margin-top: 10px;
+  border-radius: 30px;
+
+  background: var(--green);
+
+  transform: translateX(-100%);
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    var(--gradient),
+    url("https://assets.codepen.io/16327/noise-e82662fe.png");
+
+  background-blend-mode: color-dodge;
+  border-radius: inherit;
+
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+    .navbar{
+        display: none;
+    }
+}
+
+/* ========================================
+   NAVBAR
+======================================== */
+
+.navbarMobile {
+
+}
 .topbar {
   position: fixed;
   top: 0;
@@ -99,73 +149,7 @@ h1 code {
   padding: 0;
 }
 
-/* ─── Header ─── */
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: 16px;
-  padding: 80px 24px 24px;
-}
-.header h1 {
-  color: var(--light);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-}
-.header p {
-  color: var(--s50);
-  font-size: 0.88rem;
-  margin-top: 8px;
-  max-width: 70ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  font-family: Fraktion Mono, monospace;
-  font-size: 0.72rem;
-  background: rgba(10, 228, 72, 0.08);
-  color: var(--green);
-  padding: 2px 6px;
-  border-radius: 3px;
-}
 
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  font-size: 0.72rem;
-  color: var(--s50);
-}
-.controls label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-}
-.controls input[type="checkbox"] {
-  accent-color: var(--green);
-}
-.controls input[type="range"] {
-  width: 64px;
-  accent-color: var(--green);
-}
-.controls code {
-  font-family: Fraktion Mono, monospace;
-  font-size: 0.66rem;
-  background: rgba(10, 228, 72, 0.08);
-  color: var(--green);
-  padding: 2px 6px;
-  border-radius: 3px;
-}
-.speed-val {
-  font-family: Fraktion Mono, monospace;
-  font-size: 0.66rem;
-  min-width: 2em;
-}
 
 /* ── Nav overlay ── */
 .nav {
@@ -364,4 +348,219 @@ code {
   right: 2rem;
   width: 100px;
   height: auto;
+}
+
+/* ========================================
+   FLOATING ACTION BUTTON CONTAINER
+======================================== */
+
+.fab-wrap {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+
+  width: 80px;
+  height: 80px;
+
+  z-index: 1000;
+}
+
+/* ========================================
+   MAIN FAB BUTTON
+======================================== */
+
+.fab-wrap > .fab {
+  position: absolute;
+  top: 0;
+  left: 0;
+  inset: 0;
+
+  width: 80px !important;
+  height: 80px !important;
+
+  min-width: 80px;
+  min-height: 80px;
+  max-width: 80px;
+  max-height: 80px;
+
+  aspect-ratio: 1 / 1;
+  flex: 0 0 80px;
+
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  border-radius: 50% !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    120deg,
+    #00e84f 0%,
+    #abff84 100%
+  );
+
+  color: #07140a;
+  cursor: pointer;
+
+  z-index: 10;
+
+  box-shadow:
+    0 0 25px rgba(10, 228, 72, 0.25),
+    0 0 60px rgba(10, 228, 72, 0.12);
+
+  transition: box-shadow 0.3s ease;
+}
+
+/* ========================================
+   FAB NOISE TEXTURE
+======================================== */
+
+.fab-wrap > .fab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  border-radius: 50%;
+
+  background-image: url(
+    "https://assets.codepen.io/16327/noise-e82662fe.png"
+  );
+
+  background-repeat: repeat;
+  background-size: 100px 100px;
+
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+
+  pointer-events: none;
+}
+
+/* ========================================
+   FAB PLUS ICON
+======================================== */
+
+.fab-wrap > .fab svg {
+  display: block;
+
+  width: 28px;
+  height: 28px;
+
+  min-width: 28px;
+  flex-shrink: 0;
+
+  position: relative;
+  z-index: 2;
+
+  stroke: #07140a;
+  fill: none;
+
+  transform-origin: center;
+}
+
+/* ========================================
+   FAB HOVER
+======================================== */
+
+.fab-wrap > .fab:hover {
+  box-shadow:
+    0 0 35px rgba(10, 228, 72, 0.45),
+    0 0 80px rgba(10, 228, 72, 0.2);
+}
+
+/* ========================================
+   SMALL ACTION BUTTONS
+======================================== */
+
+.fab-wrap .fab-item {
+  position: absolute;
+
+  top: 10px;
+  left: 10px;
+
+  width: 60px;
+  height: 60px;
+
+  min-width: 60px;
+  min-height: 60px;
+
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #1c2b20;
+  color: var(--lt);
+
+  cursor: pointer;
+
+  opacity: 0;
+  scale: 0;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+/* Action icons */
+
+.fab-wrap .fab-item svg {
+  display: block;
+
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+
+  stroke: currentColor;
+  fill: none;
+}
+
+.fab-wrap .fab-item .fa-brands {
+    font-size: 20px;
+    display: block;
+    flex-shrink: 0;
+
+    stroke: currentColor;
+    fill: none;
+}
+
+.fab-wrap .fab-item:hover {
+  background: var(--green);
+  color: var(--black);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 768px) {
+  .fab-wrap {
+    right: 25px;
+    bottom: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fab-wrap {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .fab-wrap > .fab {
+    width: 70px !important;
+    height: 70px !important;
+    min-width: 70px;
+    min-height: 70px;
+    max-width: 70px;
+    max-height: 70px;
+    flex-basis: 70px;
+  }
 }

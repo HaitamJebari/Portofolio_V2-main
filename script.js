@@ -1,8 +1,122 @@
+    // Color palette
+    let colors = [
+      "#0ae448",
+      "#fec5fb",
+      "#ff8709",
+      "#9d95ff",
+      "#abff84",
+      "#00bae2"
+    ];
+
+    // Animate the navbar
+    gsap.to(".navbar", {
+      x: 450,
+      backgroundColor: () => gsap.utils.random(colors),
+      repeat: 0,
+      repeatRefresh: true,  
+      duration: 2,
+    });
+
+
+
+
+const items = gsap.utils.toArray(".fab-item");
+
+const radius = 120;
+const startAngle = 180;
+const endAngle = 270;
+
+const angleStep = (endAngle - startAngle) / (items.length - 1);
+
+let tl;
 let isOpen = false;
-let tl = gsap.timeline();
+
+const fabBtn = document.querySelector("#fabBtn");
+
+// Build animation timeline
+function buildTimeline() {
+
+  if (tl) {
+    tl.kill();
+  }
+
+  // Reset all buttons
+  gsap.set(items, {
+    x: 0,
+    y: 0,
+    scale: 0,
+    opacity: 0
+  });
+
+  tl = gsap.timeline({ paused: true });
+
+  // Animate each menu item
+  items.forEach((item, i) => {
+
+    const angle = (startAngle + angleStep * i) * (Math.PI / 180);
+
+    const tx = Math.cos(angle) * radius;
+    const ty = Math.sin(angle) * radius;
+
+    tl.to(item, {
+      x: tx,
+      y: ty,
+      scale: 1,
+      opacity: 1,
+      duration: 0.6,
+      ease: "elastic.out(1, 0.5)",
+      pointerEvents: "auto"
+    }, i * 0.05);
+
+  });
+
+  // Rotate the main button
+  tl.to("#fabBtn svg", {
+    rotation: 135,
+    duration: 0.35,
+    ease: "back.out(1.7)"
+  }, 0);
+}
+
+buildTimeline();
+
+// Toggle menu
+function toggle() {
+
+  if (isOpen) {
+
+    tl.reverse();
+
+    fabBtn.setAttribute("aria-expanded", "false");
+
+  } else {
+
+    tl.play();
+
+    fabBtn.setAttribute("aria-expanded", "true");
+
+  }
+
+  isOpen = !isOpen;
+}
+
+// Click event
+fabBtn.addEventListener("click", toggle);
+
+// Close menu with Escape
+document.addEventListener("keydown", (e) => {
+
+  if (e.key === "Escape" && isOpen) {
+    toggle();
+  }
+
+});
+
+let BurgerisOpen = false;
+let lt = gsap.timeline();
 
 function openMenu() {
-  tl.set("#nav", { visibility: "visible", pointerEvents: "auto" })
+  lt.set("#nav", { visibility: "visible", pointerEvents: "auto" })
     .fromTo(
     ".nav-bg",
     {
@@ -83,7 +197,7 @@ function openMenu() {
 }
 
 function closeMenu() {
-  tl.to(".bar", {
+  lt.to(".bar", {
     stroke: "var(--white)",
     duration: 0.2
   })
@@ -135,34 +249,33 @@ function closeMenu() {
 }
 
 function toggle() {
-  isOpen = !isOpen;
+  BurgerisOpen = !BurgerisOpen;
   const btn = document.getElementById("menuToggle");
-  btn.setAttribute("aria-expanded", isOpen);
-  btn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+  btn.setAttribute("aria-expanded", BurgerisOpen);
+  btn.setAttribute("aria-label", BurgerisOpen ? "Close menu" : "Open menu");
   document
     .querySelectorAll(".nav-link")
-    .forEach((l) => l.setAttribute("tabindex", isOpen ? "0" : "-1"));
+    .forEach((l) => l.setAttribute("tabindex", BurgerisOpen ? "0" : "-1"));
   document
     .querySelectorAll(".nav-socials a")
-    .forEach((l) => l.setAttribute("tabindex", isOpen ? "0" : "-1"));
+    .forEach((l) => l.setAttribute("tabindex", BurgerisOpen ? "0" : "-1"));
   
-  tl.clear()
+  lt.clear()
 
-  if (isOpen) {
+  if (BurgerisOpen) {
     openMenu();
   } else {
     closeMenu();
   }
 }
 
-document.getElementById("menuToggle").addEventListener("click", toggle);
+document.getElementById("menuToggle").addEventListener('click', toggle)
 document.querySelector(".nav-bg").addEventListener("click", () => {
-  if (isOpen) toggle();
+  if (BurgerisOpen) toggle();
 });
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && isOpen) {
+  if (e.key === "Escape" && BurgerisOpen) {
     toggle();
     document.getElementById("menuToggle").focus();
   }
 });
-
