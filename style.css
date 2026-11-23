@@ -59,6 +59,17 @@ body {
   font-family: Mori, sans-serif;
   color: var(--white);
   overflow-x: hidden;
+
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0.05) 2px,
+      transparent 2px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+
 }
 
 
@@ -69,17 +80,14 @@ body {
 .navbar {
   position: absolute;
   top: 0;
-  left: 0;
-
+  left: 50%;
   width: 50%;
+  max-width: 70em;
   height: 60px;
-
   margin-top: 10px;
   border-radius: 30px;
-
   background: var(--green);
-
-  transform: translateX(-100%);
+  transform: translateX(-50%);
 }
 
 .navbar::after {
@@ -105,7 +113,7 @@ body {
 }
 
 /* ========================================
-   NAVBAR
+  MOBILE NAVBAR
 ======================================== */
 
 .navbarMobile {
@@ -150,8 +158,6 @@ h1 code {
 }
 
 
-
-/* ── Nav overlay ── */
 .nav {
   position: fixed;
   inset: 0;
@@ -350,8 +356,14 @@ h1 code {
   height: auto;
 }
 
+@media (min-width: 1200px) {
+    .navbarMobile{
+        display: none;
+    }
+}
+
 /* ========================================
-   FLOATING ACTION BUTTON CONTAINER
+      MAIN FAB BUTTON
 ======================================== */
 
 .fab-wrap {
@@ -364,10 +376,6 @@ h1 code {
 
   z-index: 1000;
 }
-
-/* ========================================
-   MAIN FAB BUTTON
-======================================== */
 
 .fab-wrap > .fab {
   position: absolute;
@@ -414,10 +422,6 @@ h1 code {
   transition: box-shadow 0.3s ease;
 }
 
-/* ========================================
-   FAB NOISE TEXTURE
-======================================== */
-
 .fab-wrap > .fab::after {
   content: "";
   position: absolute;
@@ -438,10 +442,6 @@ h1 code {
   pointer-events: none;
 }
 
-/* ========================================
-   FAB PLUS ICON
-======================================== */
-
 .fab-wrap > .fab svg {
   display: block;
 
@@ -460,19 +460,11 @@ h1 code {
   transform-origin: center;
 }
 
-/* ========================================
-   FAB HOVER
-======================================== */
-
 .fab-wrap > .fab:hover {
   box-shadow:
     0 0 35px rgba(10, 228, 72, 0.45),
     0 0 80px rgba(10, 228, 72, 0.2);
 }
-
-/* ========================================
-   SMALL ACTION BUTTONS
-======================================== */
 
 .fab-wrap .fab-item {
   position: absolute;
@@ -563,4 +555,80 @@ h1 code {
     max-height: 70px;
     flex-basis: 70px;
   }
+}
+
+/* ========================================
+   BOX AND SCROLL
+======================================== */
+
+.spacer {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  position: relative;
+  height: 300vh;
+}
+
+.container {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border: 2px dashed var(--color-surface50);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Start point */
+.initial {
+  left: 60%;
+  top: 5%;
+}
+
+/* Down-the-page markers */
+.second {
+  left: 10%;
+  top: 25%;
+}
+
+.third {
+  right: 10%;
+  top: 45%;
+}
+
+.fourth {
+  left: 20%;
+  top: 65%;
+}
+
+.fifth {
+  left: 60%;
+  top: 80%;
+}
+
+.sixth {
+  left: 15%;
+  top: 95%;
+}
+
+.marker {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+  border-radius: 10px;
+  background-image: url("https://assets.codepen.io/16327/flair-26.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
 }

@@ -1,24 +1,48 @@
-    // Color palette
-    let colors = [
-      "#0ae448",
-      "#fec5fb",
-      "#ff8709",
-      "#9d95ff",
-      "#abff84",
-      "#00bae2"
-    ];
+// Color palette
+let colors = [
+  "#0ae448",
+  "#fec5fb",
+  "#ff8709",
+  "#9d95ff",
+  "#abff84",
+  "#00bae2"
+];
 
-    // Animate the navbar
-    gsap.to(".navbar", {
-      x: 450,
-      backgroundColor: () => gsap.utils.random(colors),
-      repeat: 0,
-      repeatRefresh: true,  
+// Animation the navbar responsive
+gsap.fromTo(
+  ".navbar",
+  {
+    x: "-100vw",
+  },
+  {
+    x: "0",
+    duration: 2,
+    ease: "power2.out",
+    backgroundColor: () => gsap.utils.random(colors),
+  }
+);
+
+
+// The Animation of the + Button 
+
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.fromTo(
+    "#fabWrap",
+    {
+      opacity: 0,
+      scale: 0
+    },
+    {
+      opacity: 1,
+      scale: 1,
       duration: 2,
-    });
+      ease: "power2.out"
+    }
+  );
+});
 
 
-
+//Mobile navbar
 
 const items = gsap.utils.toArray(".fab-item");
 
@@ -118,17 +142,17 @@ let lt = gsap.timeline();
 function openMenu() {
   lt.set("#nav", { visibility: "visible", pointerEvents: "auto" })
     .fromTo(
-    ".nav-bg",
-    {
-      opacity: 0
-    },
-    {
-      opacity: 1,
-      duration: 0.4,
-      ease: "power2.out",
-    },
-    0
-  )
+      ".nav-bg",
+      {
+        opacity: 0
+      },
+      {
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out",
+      },
+      0
+    )
 
     .fromTo(
       ".nav-panel",
@@ -248,7 +272,7 @@ function closeMenu() {
     );
 }
 
-function toggle() {
+function burgerToggle() {
   BurgerisOpen = !BurgerisOpen;
   const btn = document.getElementById("menuToggle");
   btn.setAttribute("aria-expanded", BurgerisOpen);
@@ -259,7 +283,7 @@ function toggle() {
   document
     .querySelectorAll(".nav-socials a")
     .forEach((l) => l.setAttribute("tabindex", BurgerisOpen ? "0" : "-1"));
-  
+
   lt.clear()
 
   if (BurgerisOpen) {
@@ -269,13 +293,66 @@ function toggle() {
   }
 }
 
-document.getElementById("menuToggle").addEventListener('click', toggle)
+document.getElementById("menuToggle").addEventListener('click', burgerToggle)
 document.querySelector(".nav-bg").addEventListener("click", () => {
-  if (BurgerisOpen) toggle();
+  if (BurgerisOpen) burgerToggle();
 });
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && BurgerisOpen) {
-    toggle();
+    burgerToggle();
     document.getElementById("menuToggle").focus();
   }
 });
+
+
+console.clear();
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+
+let ctx;
+
+function createTimeline() {
+  ctx && ctx.revert();
+
+  ctx = gsap.context(() => {
+    const box = document.querySelector(".box");
+    const boxStartRect = box.getBoundingClientRect();
+
+    // All containers except the first
+    const containers = gsap.utils.toArray(".container:not(.initial)");
+
+    // grab the points to animate between
+    const points = containers.map((container) => {
+      const marker = container.querySelector(".marker") || container;
+      const r = marker.getBoundingClientRect();
+
+      return {
+        x: r.left + r.width / 2 - (boxStartRect.left + boxStartRect.width / 2),
+        y: r.top + r.height / 2 - (boxStartRect.top + boxStartRect.height / 2)
+      };
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".container.initial",
+        start: "clamp(top center)",
+        endTrigger: ".final",
+        end: "clamp(top center)",
+        scrub: 1
+      }
+    });
+
+    tl.to(".box", {
+      duration: 1,
+      ease: "none",
+      motionPath: {
+        path: points, // array like - [{x:100, y:50}, {x:200, y:0}, {x:300, y:100}]
+        curviness: 1.5 // adjust how curvy the path is, default is 1, 2 is more curvy
+      }
+    });
+  });
+}
+
+createTimeline();
+window.addEventListener("resize", createTimeline);
+
+//End Mobile Navbar
